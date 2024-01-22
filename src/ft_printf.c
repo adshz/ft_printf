@@ -6,7 +6,7 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:45:29 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/16 13:44:31 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/19 15:20:03 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -45,7 +45,7 @@ int	ft_printf(const char *fmt, ...)
 {
 	va_list	ap;
 	int	i;
-	int	count;
+	int	written_count;
 	
 	va_start(ap, fmt);
 	i = 0;

@@ -6,9 +6,19 @@
 #    By: szhong <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 16:46:51 by szhong            #+#    #+#              #
-#    Updated: 2023/11/20 20:12:17 by szhong           ###   ########.fr        #
+#    Updated: 2024/01/20 00:54:12 by szhong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+DEFAULT = \033[0;39m
+GRAY = \033[0;90m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
 
 NAME		:= libft.a
 CC		:= cc
@@ -67,22 +77,25 @@ OBJS		:= $(MANDATORY:.c=.o)
 
 OBJS_BONUS	:= $(BONUS:.c=.o)
 
+INCLUDE		= ../include
+
 %.o:		%.c
-			$(CC) $(CFLAGS) -c $< -o $@
+			@$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
 
 $(NAME):	$(OBJS)
-			$(AR) $(NAME) $(OBJS)
+			@$(AR) $(NAME) $(OBJS)
+			@echo "$(YELLOW)[libft]:$(GREEN)Build Complete!$(DEFAULT)"
 
 bonus:		$(OBJS_BONUS)
-		$(AR) $(NAME) $(OBJS_BONUS)
+		@$(AR) $(NAME) $(OBJS_BONUS)
 
 all:		$(NAME) bonus
 
 clean:
-	$(RM) $(OBJS) $(OBJS_BONUS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean:		clean
-		$(RM) $(NAME)
+		@$(RM) $(NAME)
 
 re:		fclean all
 

@@ -6,15 +6,16 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:33:57 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/16 15:50:19 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/19 17:11:26 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
+#include <stdint.h>
 
 void	ft_putptr(uintptr_t ptr);
-int	ft_digit_len(uintptr_t num);
+static int	ft_digit_len(uintptr_t num);
 
 int	ft_printptr(unsigned long long ptr)
 {
@@ -28,7 +29,7 @@ int	ft_printptr(unsigned long long ptr)
 	}
 	else
 	{
-		ft_putstr(ptr);
+		ft_putptr(ptr);
 		count += ft_digit_len(ptr);
 	}
 	return (count);
@@ -45,14 +46,14 @@ void ft_putptr(uintptr_t ptr)
 	{
 		if (ptr > 9)
 		{
-			ft_putchar((ptr - 10 + 'a'), 1);
+			ft_putchar_fd((ptr - 10 + 'a'), 1);
 		}
 		else
-			ft_putchar((ptr + '0'), 1);
+			ft_putchar_fd((ptr + '0'), 1);
 	}
 }
 
-int	ft_digit_len(uintptr_t num)
+static int	ft_digit_len(uintptr_t num)
 {
 	int	len;
 

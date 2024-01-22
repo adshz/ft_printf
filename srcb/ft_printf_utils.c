@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 01:13:04 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/22 14:08:15 by szhong           ###   ########.fr       */
+/*   Created: 2024/01/22 15:54:29 by szhong            #+#    #+#             */
+/*   Updated: 2024/01/22 15:57:31 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-/**
- * @brief Duplicates a string.
- *
- * @param s The string to duplicate.
- * @return A pointer to the duplicated string, or NULL on failure.
- */
-char	*ft_strdup(const char *s)
+int	in(const char *s, char c)
 {
-	char	*dup;
-	char	*ptr;
-	
-	if (!s || !*s)
-		return (0);
-	dup = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (dup == NULL)
-	{
-		return (NULL);
-	}
-	ptr = dup;
+	if (!s)
+		return (FALSE);
 	while (*s)
 	{
-		*ptr++ = *s++;
+		if (*s == c)
+			return (TRUE);
+		s++;
 	}
-	*ptr = '\0';
-	return (dup);
+	return (FALSE);
 }

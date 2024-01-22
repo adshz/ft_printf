@@ -6,7 +6,7 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:33:51 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/16 22:36:27 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/19 15:20:56 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -29,8 +29,8 @@ void	ft_puthex(int	num, const char specifier)
 {
 	if (num > 15)
 	{
-		ft_puthex(num / 16);
-		ft_puthex(num % 16);
+		ft_puthex(num / 16, specifier);
+		ft_puthex(num % 16, specifier);
 	}
 	else
 	{
