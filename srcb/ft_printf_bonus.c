@@ -6,7 +6,7 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 02:02:46 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/22 15:25:30 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/23 14:54:57 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf_bonus.h"
@@ -40,7 +40,7 @@ int	ft_printf_bonus(const char *fmt, ...)
 			
 			if (parse_format(&data) != OK)
 				return (PARSE_ERROR);
-			render_format(&data);
+			render_format(&data, data->format.specifier);
 		}
 		else
 			write_buf(&data, data.s);

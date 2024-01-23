@@ -6,7 +6,7 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:51:53 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/22 15:33:30 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/23 15:47:39 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_PRINTF_BONUS_H
@@ -17,6 +17,7 @@
 # define BUFFER_SIZE 4096
 # define TRUE 1;
 # define FALSE 0;
+# define SPECIFIERS "cspudixX%"
 
 typedef struct s_data
 {
@@ -26,7 +27,7 @@ typedef struct s_data
 	char	*buff;
 	int	buffer_indx;
 	t_format format;
-} t_data;
+}	t_data;
 
 typedef struct s_format
 {
@@ -47,12 +48,19 @@ typedef struct s_format
 	int	signed_value;
 	int	is_negative;
 	int	is_converted;
-} t_format;
+}	t_format;
 
 typedef enum
 {
 	OK = 1;
 	MALLOC_FAIL = -1989;
 	PARSE_ERROR = -2010;
-}
+}	e_error;
+
+typedef union
+{
+	unsinged long	uint64;
+	long int	int64;
+}	union_int;
+
 #endif

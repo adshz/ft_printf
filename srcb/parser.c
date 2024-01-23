@@ -6,7 +6,7 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:26:01 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/22 16:22:39 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/23 13:51:09 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf_bonus.h"
@@ -52,4 +52,17 @@ int	parse_format(t_data *data)
 	get_value(data, data->format.width_value);
 	if (*data->s == '.' && *(++data->s))
 		get_value(data, data->format.precision_value);
+	if (!in(SPECIFIERS, *data->format))
+		return (PARSE_ERROR);
+	else
+	{
+		data->format.specifier = *data->s;
+		if (in("diu", data->format.specifier))
+			data->format.base = BASE_10;
+		else if (in('X', data->format.specifier))
+			data->format.upper = TRUE;
+		else if (in('b' == data->format.specifier))
+			data->format.base = BASE_2;
+	}
+	return (OK);
 }
