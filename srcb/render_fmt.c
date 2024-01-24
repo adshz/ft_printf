@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_format.c                                    :+:      :+:    :+:   */
+/*   render_fmt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:58:13 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/23 14:53:17 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/24 15:50:05 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf_bonus.h"
 
-void	render_format(t_data *data, char specifier)
+void	render_fmt(t_data *data)
 {
+	char	specifier;
+
+	specifier = data->format.specifier;
 	union_int	int_box;
 
 	if (specifier == '%')

@@ -6,7 +6,7 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:26:01 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/23 13:51:09 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/24 13:00:06 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf_bonus.h"
@@ -44,7 +44,7 @@ static void get_value(t_data *data, int *value)
 	*value = ft_atoi(data->s);
 }
 
-int	parse_format(t_data *data)
+int	parse_fmt(t_data *data)
 {
 	ft_memset(&data->format, 0 , sizeof(t_format));
 	data->format.precision_value = 1;

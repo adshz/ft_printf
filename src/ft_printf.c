@@ -6,7 +6,7 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:45:29 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/19 15:20:03 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:05:06 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -19,7 +19,7 @@ int	ft_printchar(char c)
 	return (count);
 }
 
-int	ft_fmts(const char specifier, va_list ap)
+int	ft_fmt(const char specifier, va_list ap)
 {
 	int	print_count;
 
@@ -54,7 +54,7 @@ int	ft_printf(const char *fmt, ...)
 	{
 		if (fmt[i] == '%')
 		{
-			written_count += ft_fmts(fmt[i + 1], ap);
+			written_count += ft_fmt(fmt[i + 1], ap);
 			i++;
 		}
 		else

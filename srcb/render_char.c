@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   render_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 15:54:29 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/23 16:11:24 by szhong           ###   ########.fr       */
+/*   Created: 2024/01/23 15:09:26 by szhong            #+#    #+#             */
+/*   Updated: 2024/01/24 16:04:05 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	in(const char *s, char c)
+#include "ft_printf_bonus.h"
+
+void	print_char(t_data *data, int c)
 {
-	if (!s)
-		return (FALSE);
-	while (*s)
+	int	width;
+
+	width = data->format.width_value;
+	if (width > 1)
 	{
-		if (*s == c)
-			return (TRUE);
-		s++;
+		if ( data->format.left_justified == TRUE)
+		{
+			putchar_buff((char )c, 1, data);
+			putchar_buff(' ' , width - 1, data);	
+		}
+		else
+		{
+			putchar_buff(' ', width - 1, data);
+			putchar_buff((char )c, 1, data);
+		}
 	}
-	return (FALSE);
+	else
+		putchar_buff((char)c, 1, data);
 }
