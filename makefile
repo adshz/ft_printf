@@ -100,9 +100,10 @@ $(LIBFT):
 clean:
 	@$(MAKE) $(MAKEFLAGS) -C $(LIBFT_PATH) clean
 	@$(RM) $(OBJ_DIR)
+	@$(RM) $(OBJB_DIR)
 	@$(RM) test/test_bonus
 	@$(RM) test/test
-	@echo "$(CYAN)Object is removed$(DEFAULT)\n"
+	@echo "$(CYAN)Objects removed$(DEFAULT)\n"
 
 fclean: clean
 	@$(MAKE) $(MAKEFLAGS) -C $(LIBFT_PATH) fclean
@@ -114,13 +115,13 @@ re: fclean all
 
 test: all
 	@echo "\n$(YELLOW)Testing.......$(DEFAULT)\n"
-	@$(CC) $(CFLAGS) -I $(INCLUDE) test/main.c -L. -l:libftprintf.a -o test/test
+	@$(CC) $(CFLAGS) -I $(INCLUDE) test/main.c -L. -lftprintf -o test/test
 	@test/test | cat -e
 	@echo "$(GREEN) Test Complete!$(DEFAULT)\n"
 
 test_bonus: bonus
 	@echo "\n$(YELLOW)Testing.......$(DEFAULT)\n"
-	@$(CC) $(CFLAGS) -I $(INCLUDE) test/main_bonus.c -L. -lftprintf -o test/test_bonus
+	@$(CC) $(CFLAGS) -I $(INCLUDE) test/main_bonus.c -L. -lftprintf -o test/test_bonus -g3
 	@test/test_bonus | cat -e
 	@echo "$(GREEN) Test $(BOLD) BONUS  Complete!$(DEFAULT)\n"
 
