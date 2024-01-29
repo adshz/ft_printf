@@ -26,21 +26,21 @@ void	test_c(char c)
 	printf("ft_printf - return bytes: %d\n", y);
 }
 
-void	test_s(char *s)
+void	test_s(void)
 {
 	int	x;
 	int	y;
-
+	char	*s = "hello world";
 	
 	printf("\n--------------TEST: String-----------------\n");
-	x = printf("printf: string\t%s\n", s);
-	y = ft_printf("ft_printf: string\t%s\n", s);
-	printf("printf - return bytes : %d\n", x);
-	printf("ft_printf - return bytes: %d\n", y);
+//	x = printf("\nprintf: string\t%s\n", s);
+	y = ft_printf("\nft_printf: string\t%s\n", s);
+//	printf("printf - return bytes : %d\n", x);
+//	printf("ft_printf - return bytes: %d\n", y);
 	
 }
 int	main()
 {
 	//test_c('\n');
-	test_s("Hello world!");
+	test_s();
 }

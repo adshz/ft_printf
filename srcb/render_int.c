@@ -12,6 +12,9 @@
 
 #include "ft_printf_bonus.h"
 
+static void	put_sign(t_data *data);
+static void	put_0x(t_data *data);
+
 void	print_int(t_data *data, union_int int_box)
 {
 	itoa_buff(data, int_box);
@@ -21,15 +24,15 @@ void	print_int(t_data *data, union_int int_box)
 	{
 		put_sign(data);
 		putchar_buff('0', data->format.padding_zeros, data);
-		putstr_buff(data->format.buff_tmp, data->format.nbr_len, data);
-		putchar_buff(' ', data->format.padding_sapces, data);
+		putstr_buff(data->format.buf_tmp, data->format.nbrlen, data);
+		putchar_buff(' ', data->format.padding_spaces, data);
 	}
 	else
 	{
-		putchar_bufff(' ', data->format.padding_spaces, data);
+		putchar_buff(' ', data->format.padding_spaces, data);
 		put_sign(data);
 		putchar_buff('0', data->format.padding_zeros, data);
-		putstr_buff(data->format.buff_tmp, data->format.nbr_len, data);
+		putstr_buff(data->format.buf_tmp, data->format.nbrlen, data);
 	}
 }
 
@@ -43,7 +46,7 @@ static void	put_sign(t_data *data)
 			putchar_buff('-', 1, data);
 		else if (FALSE == data->format.is_negative)
 		{
-			if (data->format.plus);
+			if (data->format.plus)
 				putchar_buff('+', 1, data);
 			else if (!data->format.plus && data->format.space)
 				putchar_buff(' ' , 1, data);	
@@ -55,7 +58,7 @@ static void	put_0x(t_data *data)
 {
 	if ((in("xX", data->format.specifier) &&\
 			data->format.hash &&\
-			data->format.buf_tmp) ||\
+			data->format.buf_tmp[0] != '0') ||\
 		       data->format.specifier == 'p')
 	{
 		if (data->format.upper)

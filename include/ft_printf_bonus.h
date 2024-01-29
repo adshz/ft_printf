@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include "libft.h"
 
+# define FLAGS "+ 0-#"
 # define BUFFER_SIZE 4096
 # define TRUE 1
 # define FALSE 0
@@ -88,4 +89,6 @@ void	render_fmt(t_data *data);
 void	print_int(t_data *data, union_int int_box);
 void	print_str(t_data *data, char *s);
 int	in(const char *s, char c);
+void	set_padding_zeros(t_data *data);
+void	set_padding_spaces(t_data *data);
 #endif

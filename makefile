@@ -120,13 +120,9 @@ test: all
 
 test_bonus: bonus
 	@echo "\n$(YELLOW)Testing.......$(DEFAULT)\n"
-	@$(CC) $(CFLAGS) -I $(INCLUDE) test/main_bonus.c -L. -l:libftprintf.a -o test/test_bonus
+	@$(CC) $(CFLAGS) -I $(INCLUDE) test/main_bonus.c -L. -lftprintf -o test/test_bonus
 	@test/test_bonus | cat -e
 	@echo "$(GREEN) Test $(BOLD) BONUS  Complete!$(DEFAULT)\n"
 
-$(info SRCB_DIR is $(SRCB_DIR))
-$(info SRCB is $(SRCB))
-$(info SRCBS is $(SRCBS))
-$(info VPATH is $(VAPTH))
 
 .PHONY: all clean fclean re bonus test test_bonus

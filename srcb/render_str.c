@@ -12,6 +12,9 @@
 
 #include "ft_printf_bonus.h"
 
+static void	set_str_padding_spaces(t_data *data, char *s);
+static void	print_spaces(t_data **data, char **s);
+
 void	print_str(t_data *data, char *s)
 {
 	if (s == NULL)
@@ -19,22 +22,22 @@ void	print_str(t_data *data, char *s)
 	set_str_padding_spaces(data, s);
 	if (data->format.left_justified)
 	{
-		print_spaces();
+		print_spaces(&data, &s);
 		putchar_buff(' ', data->format.padding_spaces, data);
 	}
 	else
 	{
 		putchar_buff(' ', data->format.padding_spaces, data);
-		print_spaces();
+		print_spaces(&data, &s);
 	}
 }
 
-static void	print_spaces(void)
+static void	print_spaces(t_data **data, char **s)
 {
-	if (data->format.precision_value >= 0)
-		putstr_buff(s, data->format.precision_value, data);
+	if ((*data)->format.precision_value >= 0)
+		putstr_buff(*s, (*data)->format.precision_value, *data);
 	else
-		putstr_buff(s, ft_strlen(s), data);
+		putstr_buff(*s, ft_strlen(*s), *data);
 }
 
 static void	set_str_padding_spaces(t_data *data, char *s)
@@ -48,7 +51,7 @@ static void	set_str_padding_spaces(t_data *data, char *s)
 	{
 		if (data->format.precision_value >= 0)
 		{
-			if (data->format.precision >= len)
+			if (data->format.precision_value >= len)
 			{
 				temp = data->format.width_value - len;
 				data->format.padding_spaces = temp;
