@@ -22,22 +22,20 @@ void	print_str(t_data *data, char *s)
 	set_str_padding_spaces(data, s);
 	if (data->format.left_justified)
 	{
-		print_spaces(&data, &s);
+		if (data->format.precision_value >= 0)
+			putstr_buff(s, data->format.precision_value, data);
+		else
+			putstr_buff(s, ft_strlen(s), data);
 		putchar_buff(' ', data->format.padding_spaces, data);
 	}
 	else
 	{
 		putchar_buff(' ', data->format.padding_spaces, data);
-		print_spaces(&data, &s);
+		if (data->format.precision_value >= 0)
+			putstr_buff(s, data->format.precision_value, data);
+		else
+			putstr_buff(s, ft_strlen(s), data);
 	}
-}
-
-static void	print_spaces(t_data **data, char **s)
-{
-	if ((*data)->format.precision_value >= 0)
-		putstr_buff(*s, (*data)->format.precision_value, *data);
-	else
-		putstr_buff(*s, ft_strlen(*s), *data);
 }
 
 static void	set_str_padding_spaces(t_data *data, char *s)
@@ -51,12 +49,12 @@ static void	set_str_padding_spaces(t_data *data, char *s)
 	{
 		if (data->format.precision_value >= 0)
 		{
-			if (data->format.precision_value >= len)
+			if (data->format.precision_value > len)
 			{
 				temp = data->format.width_value - len;
 				data->format.padding_spaces = temp;
 			}
-			else
+			else if (data->format.precision_value < len)
 			{
 				temp = data->format.width_value - data->format.precision_value;
 				data->format.padding_spaces = temp;
