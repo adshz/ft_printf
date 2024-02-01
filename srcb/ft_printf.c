@@ -24,7 +24,7 @@ int data_init(t_data *data, const char *fmt)
 		return (MALLOC_FAIL);
 	data->buff = buffer;
 	data->buffer_indx = 0;
-	return (SUCCESS;
+	return (SUCCESS);
 }
 
 int ft_printf(const char *fmt, ...)
@@ -38,7 +38,7 @@ int ft_printf(const char *fmt, ...)
 	{
 		if (*data.s == '%' && *++data.s)
 		{
-			if (parse_fmt(&data) != OK)
+			if (parse_fmt(&data) != SUCCESS)
 				return (PARSE_ERROR);
 			render_fmt(&data);
 		}
