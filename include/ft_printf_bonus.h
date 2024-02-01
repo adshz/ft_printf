@@ -32,9 +32,11 @@ typedef union
 
 typedef enum
 {
-	OK = 1,
+	SUCCESS = 1,
 	MALLOC_FAIL = -1989,
 	PARSE_ERROR = -2010,
+	FORMAT_STRING_EMPTY = 0;
+	INITIALIZATION_ERROR = -1;
 }	e_error;
 
 typedef enum

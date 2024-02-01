@@ -13,31 +13,31 @@
 
 int	data_init(t_data *data, const char *fmt)
 {
+	char	*buffer;
+
 	if (!fmt || *fmt == '\0')
-	       return (0);
+	       return (FORMAT_STRING_EMPTY);
 	data->s = fmt;
 	data->written_count = 0;
-	data->buff = malloc(BUFFER_SIZE *sizeof(char));
-	if (data->buff == NULL)
+	buffer = (char *)ft_calloc(BUFFER_SIZE, sizeof(char));
+	if (buffer == NULL)
 		return (MALLOC_FAIL);
+	data->buff = buffer;
 	data->buffer_indx = 0;
-	ft_memset(data->buff, 0, BUFFER_SIZE * sizeof(char));
-	return (OK);
-	
+	return (SUCCESS;
 }
 
 int	ft_printf(const char *fmt, ...)
 {
 	t_data	data;
 
-	if (data_init(&data, fmt) != OK)
-		return (-1);
+	if (data_init(&data, fmt) != SUCCESS)
+		return (INITIALIZATION_ERROR);
 	va_start(data.ap, fmt);
 	while (*data.s)
 	{
 		if (*data.s == '%' && *++data.s)
 		{
-			
 			if (parse_fmt(&data) != OK)
 				return (PARSE_ERROR);
 			render_fmt(&data);
@@ -45,7 +45,6 @@ int	ft_printf(const char *fmt, ...)
 		else
 			write_buff(&data, *data.s);
 		++data.s;
-
 	}
 	flush_buff(&data);
 	va_end(data.ap);

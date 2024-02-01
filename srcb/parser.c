@@ -13,11 +13,11 @@
 
 static void get_value(t_data *data, int *value);
 static void parse_flags(t_data *data);
-int	parse_fmt(t_data *data);
+int parse_fmt(t_data *data);
 
 static void parse_flags(t_data *data)
 {
-	char	flag;
+	char flag;
 
 	while (in(FLAGS, *data->s))
 	{
@@ -34,7 +34,7 @@ static void parse_flags(t_data *data)
 			data->format.plus = TRUE;
 		data->s++;
 	}
-	return ;
+	return;
 }
 
 static void get_value(t_data *data, int *value)
@@ -43,15 +43,15 @@ static void get_value(t_data *data, int *value)
 	{
 		*value = va_arg(data->ap, int);
 		++data->s;
-		return ;
+		return;
 	}
 	*value = ft_atoi(data->s);
 }
 
-int	parse_fmt(t_data *data)
+int parse_fmt(t_data *data)
 {
-	ft_memset(&data->format, 0 , sizeof(t_format));
-	data->format.precision_value = 1;
+	ft_memset(&data->format, 0, sizeof(t_format));
+	data->format.precision_value = -1;
 	parse_flags(data);
 	get_value(data, &data->format.width_value);
 	if (*data->s == '.' && *(++data->s))
