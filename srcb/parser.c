@@ -6,7 +6,7 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:26:01 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/24 13:00:06 by szhong           ###   ########.fr       */
+/*   Updated: 2024/01/31 17:05:48 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf_bonus.h"
@@ -71,6 +71,21 @@ int parse_fmt(t_data *data)
 		}
 		else if ('b' == data->format.specifier)
 			data->format.base = BASE_2;
+		/*
+		else if ('-' == data->format.specifier)
+		{
+			data->format.left_justified = TRUE;
+			data->format.zero_pads = FALSE;
+		}
+		else if ('+' == data->format.specifier)
+			data->format.plus = TRUE;
+		else if (' ' == data->format.specifier)
+			data->format.space == TRUE;
+		else if ('#' == data->format.specifier)
+			data->format.hash = TRUE;
+		else if ('0' == data->format.specifier && !data->format.left_justified && !data->format.width_value)
+			data->format.zero_pads = TRUE;
+		else if ('*' == data->format.specifier)*/
 	}
-	return (OK);
+	return (SUCCESS);
 }
