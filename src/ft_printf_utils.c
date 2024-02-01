@@ -44,8 +44,8 @@ int	ft_printstr(char *str)
 
 int	ft_printnbr(int n)
 {
-	int	len;
 	char	*num;
+	int		len;
 
 	len = 0;
 	num = ft_itoa(n);

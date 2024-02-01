@@ -23,7 +23,6 @@ void	test_c(char c)
 	printf("\n--------------TEST: Character-----------------\n");
 	x = printf("printf: %c\n", c);
 	y = ft_printf("ft_printf: %c\n", c);
-	
 	printf("printf - return bytes : %d\n", x);
 	printf("ft_printf - return bytes: %d\n", y);
 }
@@ -33,21 +32,17 @@ void	test_s(char *s)
 	int	x;
 	int	y;
 	int	z;
-	
+
 	z = printf("\n--------------TEST: String-----------------\n");
-	
 	printf("\nprintf:\n");
 	x = printf("%s", s);
 	printf("\nft_printf:\n");
 	y = ft_printf("%s", s);
-
 	printf("printf - return bytes : %d\n", x);
 	printf("ft_printf - return bytes: %d\n", y);
-	
 }
 
-int	main()
+int	main(void)
 {
-	//test_c('\n');
 	test_s("Hello world!");
 }

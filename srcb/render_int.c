@@ -15,7 +15,7 @@
 static void	put_sign(t_data *data);
 static void	put_0x(t_data *data);
 
-void	print_int(t_data *data, union_int int_box)
+void	print_int(t_data *data, t_union_int int_box)
 {
 	itoa_buff(data, int_box);
 	set_padding_zeros(data);
@@ -36,9 +36,9 @@ void	print_int(t_data *data, union_int int_box)
 	}
 }
 
-void	itoa_buff(t_data *da, union_int int_box)
+void	itoa_buff(t_data *da, t_union_int int_box)
 {
-	union_int	tmp;
+	t_union_int	tmp;
 
 	if (da->format.base < 2 || da->format.base > 16)
 		return ;
@@ -59,7 +59,7 @@ void	itoa_buff(t_data *da, union_int int_box)
 	}
 }
 
-void	convert_digit(t_data *data, union_int int_box)
+void	convert_digit(t_data *data, t_union_int int_box)
 {
 	if (data->format.upper)
 		data->format.buf_tmp[data->format.nbrlen++] = UP_HEX[int_box.uint64];

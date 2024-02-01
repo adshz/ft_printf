@@ -38,5 +38,5 @@ char	*ft_strrchr(const char *s, int c)
 	else
 	{
 		return ((char *)temp);
-	}	
+	}
 }

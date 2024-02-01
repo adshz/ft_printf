@@ -32,7 +32,7 @@ int	ft_fmt(const char specifier, va_list ap)
 		print_count += ft_printstr(va_arg(ap, char *));
 	else if (specifier == 'p')
 		print_count += ft_printptr(va_arg(ap, unsigned long long));
-	else if (specifier == 'd'|| specifier == 'i')
+	else if (specifier == 'd' || specifier == 'i')
 		print_count += ft_printnbr(va_arg(ap, int));
 	else if (specifier == 'u')
 		print_count += ft_print_unsigned_decimal(va_arg(ap, unsigned int));
@@ -44,9 +44,9 @@ int	ft_fmt(const char specifier, va_list ap)
 int	ft_printf(const char *fmt, ...)
 {
 	va_list	ap;
-	int	i;
-	int	written_count;
-	
+	int		written_count;
+	int		i;
+
 	va_start(ap, fmt);
 	i = 0;
 	written_count = 0;

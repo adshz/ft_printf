@@ -13,7 +13,7 @@
 /**
  * @file libft.h
  * @brief Library containing various utility functions,
- * 	  a linked list implementation.
+ * a linked list implementation.
  */
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -22,7 +22,7 @@
 # include <stdint.h>
 
 # define FT_INT_MAX 2147483647
-# define FT_INT_MIN (-2147483648)
+# define FT_INT_MIN -2147483648
 # define FT_LONG_MAX 9223372036854775807
 # define FT_LONG_MIN -9223372036854775808
 

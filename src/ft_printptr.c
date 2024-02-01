@@ -14,8 +14,8 @@
 #include "ft_printf.h"
 #include <stdint.h>
 
-void	ft_putptr(uintptr_t ptr);
 static int	ft_digit_len(uintptr_t num);
+void		ft_putptr(uintptr_t ptr);
 
 int	ft_printptr(unsigned long long ptr)
 {
@@ -35,7 +35,7 @@ int	ft_printptr(unsigned long long ptr)
 	return (count);
 }
 
-void ft_putptr(uintptr_t ptr)
+void	ft_putptr(uintptr_t ptr)
 {
 	if (ptr > 15)
 	{

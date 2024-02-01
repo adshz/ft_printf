@@ -28,28 +28,22 @@ void	test_c(char c)
 
 void	test_s(void)
 {
-	int	x;
-	int	y;
-	char	*s = "hello world";
-	
+	char	*s;
+	int		x;
+	int		y;
+
+	s = ft_strdup("hello world");
 	printf("\n--------------TEST: String-----------------\n");
-//	x = printf("\nprintf: string\t%s\n", s);
 	y = ft_printf("\nft_printf: string\t%s\n", s);
-//	printf("printf - return bytes : %d\n", x);
-//	printf("ft_printf - return bytes: %d\n", y);
-	
 }
-int	main()
+
+int	main(void)
 {
-	//test_c('\n');
-	//test_s();
-	int	x;
-	int	y;
-	char	*s = "hello world";
-	
+	char	*s;
+	int		x;
+	int		y;
+
+	s = ft_strdup("hello world");
 	ft_printf("\n--------------TEST: String-----------------\n");
-//	x = printf("\nprintf: string\t%s\n", s);
 	ft_printf("\nft_printf: string\t%s\n", s);
-//	printf("printf - return bytes : %d\n", x);
-//	printf("ft_printf - return bytes: %d\n", y);
 }

@@ -13,7 +13,7 @@
 
 void	render_fmt(t_data *data)
 {
-	union_int	int_box;
+	t_union_int	int_box;
 	char		spec;
 
 	spec = data->format.specifier;
@@ -31,7 +31,7 @@ void	render_fmt(t_data *data)
 	}
 }
 
-void	handle_int_spec(t_data *data, char spec, union_int *ptr_intbox)
+void	handle_int_spec(t_data *data, char spec, t_union_int *ptr_intbox)
 {
 	if (in("di", spec))
 	{

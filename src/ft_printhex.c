@@ -12,7 +12,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-int	ft_hex_len(int	num)
+int	ft_hex_len(int num)
 {
 	int	len;
 
@@ -25,7 +25,7 @@ int	ft_hex_len(int	num)
 	return (len);
 }
 
-void	ft_puthex(int	num, const char specifier)
+void	ft_puthex(int num, const char specifier)
 {
 	if (num > 15)
 	{
@@ -62,5 +62,4 @@ int	ft_printhex(int num, const char specifier)
 		count = ft_hex_len(num);
 	}
 	return (count);
-
 }
