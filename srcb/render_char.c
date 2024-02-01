@@ -19,10 +19,10 @@ void	print_char(t_data *data, int c)
 	width = data->format.width_value;
 	if (width > 1)
 	{
-		if ( data->format.left_justified == TRUE)
+		if (data->format.left_justified == TRUE)
 		{
 			putchar_buff((char )c, 1, data);
-			putchar_buff(' ' , width - 1, data);	
+			putchar_buff(' ', width - 1, data);
 		}
 		else
 		{

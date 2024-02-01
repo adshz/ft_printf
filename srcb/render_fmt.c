@@ -13,31 +13,36 @@
 
 void	render_fmt(t_data *data)
 {
-	char	specifier;
-
-	specifier = data->format.specifier;
 	union_int	int_box;
+	char		spec;
 
-	if (specifier == '%')
+	spec = data->format.specifier;
+	if (spec == '%')
 		print_char(data, '%');
-	else if (specifier == 'c')
+	else if (spec == 'c')
 		print_char(data, va_arg(data->ap, int));
-	else if (specifier == 's')
+	else if (spec == 's')
 		print_str(data, va_arg(data->ap, char *));
 	int_box.int64 = 0;
-	if (in("dipxXub", specifier))
+	if (in("dipxXub", spec))
 	{
-		if (in("di", specifier))
-		{
-			int_box.int64 = (long)va_arg(data->ap, int);
-			data->format.signed_value = TRUE;
-			if (int_box.int64 < 0)
-				data->format.is_negative = TRUE;
-		}
-		else if (specifier == 'p')
-			int_box.uint64 = (unsigned long)va_arg(data->ap, void *);
-		else if (in("xXub", specifier))
-			int_box.uint64 = (unsigned long)va_arg(data->ap, unsigned int);
+		handle_int_spec(data, spec, &int_box);
 		print_int(data, int_box);
 	}
+}
+
+void	handle_int_spec(t_data *data, char spec, union_int *ptr_intbox)
+{
+	if (in("di", spec))
+	{
+		ptr_intbox->int64 = (long)va_arg(data->ap, int);
+		data->format.signed_value = TRUE;
+		if (ptr_intbox->int64 < 0)
+			data->format.is_negative = TRUE;
+	}
+	else if (spec == 'p')
+		ptr_intbox->uint64 = (unsigned long)va_arg(data->ap, void *);
+	else if (in("xXub", spec))
+		ptr_intbox->uint64 = (unsigned long)va_arg(data->ap, unsigned int);
+	return ;
 }

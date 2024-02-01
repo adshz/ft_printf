@@ -40,13 +40,15 @@ SRCS		=	 $(addsuffix .c, $(SRC))
 SRCB_DIR	=	srcb
 SRCB		=	ft_printf\
 			buf_mgr\
-			itoa_buf\
 			render_char\
 			render_fmt\
 			render_int\
 			render_str\
 			parser\
 			base_utils\
+			set_pad_space\
+			set_pad_zero
+
 
 SRCBS		=	$(addsuffix .c, $(SRCB))
 
@@ -123,7 +125,7 @@ test_bonus: bonus
 	@echo "\n$(YELLOW)Testing.......$(DEFAULT)\n"
 	@$(CC) $(CFLAGS) -I $(INCLUDE) test/main_bonus.c -L. -lftprintf -o test/test_bonus -g3
 	@test/test_bonus | cat -e
-	@echo "$(GREEN) Test $(BOLD) BONUS  Complete!$(DEFAULT)\n"
+	@echo "$(GREEN) Test  BONUS  Complete!$(DEFAULT)\n"
 
 
 .PHONY: all clean fclean re bonus test test_bonus

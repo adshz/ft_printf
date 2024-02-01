@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "ft_printf_bonus.h"
 
-int data_init(t_data *data, const char *fmt)
+int	data_init(t_data *data, const char *fmt)
 {
-	char *buffer;
+	char	*buffer;
 
 	if (!fmt || *fmt == '\0')
 		return (FORMAT_STRING_EMPTY);
@@ -27,9 +27,9 @@ int data_init(t_data *data, const char *fmt)
 	return (SUCCESS);
 }
 
-int ft_printf(const char *fmt, ...)
+int	ft_printf(const char *fmt, ...)
 {
-	t_data data;
+	t_data	data;
 
 	if (data_init(&data, fmt) != SUCCESS)
 		return (INITIALIZATION_ERROR);

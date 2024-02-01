@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 #include "ft_printf_bonus.h"
 
-static void get_value(t_data *data, int *value);
-static void parse_flags(t_data *data);
-int parse_fmt(t_data *data);
+static void	get_value(t_data *data, int *value);
+static void	parse_flags(t_data *data);
+int			parse_fmt(t_data *data);
 
-static void parse_flags(t_data *data)
+static void	parse_flags(t_data *data)
 {
-	char flag;
+	char	flag;
 
 	while (in(FLAGS, *data->s))
 	{
@@ -34,21 +34,21 @@ static void parse_flags(t_data *data)
 			data->format.plus = TRUE;
 		data->s++;
 	}
-	return;
+	return ;
 }
 
-static void get_value(t_data *data, int *value)
+static void	get_value(t_data *data, int *value)
 {
 	if (*data->s == '*')
 	{
 		*value = va_arg(data->ap, int);
 		++data->s;
-		return;
+		return ;
 	}
 	*value = ft_atoi(data->s);
 }
 
-int parse_fmt(t_data *data)
+int	parse_fmt(t_data *data)
 {
 	ft_memset(&data->format, 0, sizeof(t_format));
 	data->format.precision_value = -1;
@@ -71,21 +71,6 @@ int parse_fmt(t_data *data)
 		}
 		else if ('b' == data->format.specifier)
 			data->format.base = BASE_2;
-		/*
-		else if ('-' == data->format.specifier)
-		{
-			data->format.left_justified = TRUE;
-			data->format.zero_pads = FALSE;
-		}
-		else if ('+' == data->format.specifier)
-			data->format.plus = TRUE;
-		else if (' ' == data->format.specifier)
-			data->format.space == TRUE;
-		else if ('#' == data->format.specifier)
-			data->format.hash = TRUE;
-		else if ('0' == data->format.specifier && !data->format.left_justified && !data->format.width_value)
-			data->format.zero_pads = TRUE;
-		else if ('*' == data->format.specifier)*/
 	}
 	return (SUCCESS);
 }

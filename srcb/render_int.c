@@ -36,6 +36,38 @@ void	print_int(t_data *data, union_int int_box)
 	}
 }
 
+void	itoa_buff(t_data *da, union_int int_box)
+{
+	union_int	tmp;
+
+	if (da->format.base < 2 || da->format.base > 16)
+		return ;
+	if (da->format.is_negative && !da->format.is_converted)
+	{
+		int_box.int64 = -(int_box.int64);
+		da->format.is_converted = TRUE;
+		itoa_buff(da, int_box);
+	}
+	else if (int_box.uint64 < da->format.base)
+		convert_digit(da, int_box);
+	else
+	{
+		tmp.uint64 = int_box.uint64 / da->format.base;
+		itoa_buff(da, tmp);
+		tmp.uint64 = int_box.uint64 % da->format.base;
+		itoa_buff(da, tmp);
+	}
+}
+
+void	convert_digit(t_data *data, union_int int_box)
+{
+	if (data->format.upper)
+		data->format.buf_tmp[data->format.nbrlen++] = UP_HEX[int_box.uint64];
+	else
+		data->format.buf_tmp[data->format.nbrlen++] = LO_HEX[int_box.uint64];
+	return ;
+}
+
 static void	put_sign(t_data *data)
 {
 	if (data->format.base == BASE_16)
@@ -49,17 +81,20 @@ static void	put_sign(t_data *data)
 			if (data->format.plus)
 				putchar_buff('+', 1, data);
 			else if (!data->format.plus && data->format.space)
-				putchar_buff(' ' , 1, data);	
+				putchar_buff(' ', 1, data);
 		}
 	}
 }
 
 static void	put_0x(t_data *data)
 {
-	if ((in("xX", data->format.specifier) &&\
-			data->format.hash &&\
-			data->format.buf_tmp[0] != '0') ||\
-		       data->format.specifier == 'p')
+	int		is_hash;
+	char	spec;
+
+	is_hash = data->format.hash;
+	spec = data->format.specifier;
+	if ((in("xX", spec) && is_hash && data->format.buf_tmp[0] != '0') || \
+			spec == 'p')
 	{
 		if (data->format.upper)
 			putstr_buff("0X", 2, data);

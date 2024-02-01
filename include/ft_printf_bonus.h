@@ -35,8 +35,8 @@ typedef enum
 	SUCCESS = 1,
 	MALLOC_FAIL = -1989,
 	PARSE_ERROR = -2010,
-	FORMAT_STRING_EMPTY = 0;
-	INITIALIZATION_ERROR = -1;
+	FORMAT_STRING_EMPTY = 0,
+	INITIALIZATION_ERROR = -1
 }	e_error;
 
 typedef enum
@@ -93,4 +93,11 @@ void	print_str(t_data *data, char *s);
 int	in(const char *s, char c);
 void	set_padding_zeros(t_data *data);
 void	set_padding_spaces(t_data *data);
+void	cal_precision_padding(t_data *data);
+void	cal_width_padding(t_data *data);
+void	adj_zero_special(t_data *data);
+void	cal_padding_space(t_data *data);
+void	adj_space_special(t_data *data);
+void	handle_int_spec(t_data *data, char spec, union_int *ptr_intbox);
+void	convert_digit(t_data *data, union_int int_box);
 #endif
