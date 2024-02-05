@@ -14,26 +14,18 @@
 /**
  * @brief Duplicates a string.
  *
- * @param s The string to duplicate.
+ * @param s1 The string to duplicate.
  * @return A pointer to the duplicated string, or NULL on failure.
  */
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s1)
 {
-	char	*dup;
-	char	*ptr;
+	char	*s2;
+	size_t	len;
 
-	if (!s || !*s)
-		return (0);
-	dup = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (dup == NULL)
-	{
-		return (NULL);
-	}
-	ptr = dup;
-	while (*s)
-	{
-		*ptr++ = *s++;
-	}
-	*ptr = '\0';
-	return (dup);
+	len = ft_strlen(s1) + 1;
+	s2 = malloc(len *sizeof(char));
+	if (!s2)
+		return(NULL);
+	ft_strlcpy(s2, s1, len);
+	return (s2);
 }

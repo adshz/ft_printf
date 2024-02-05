@@ -30,6 +30,8 @@ int	ft_printf(const char *fmt, ...)
 	return (written_count);
 }
 
+#if defined(__linux__) || defined(__gnu_linux__)
+
 int	parse_fmt(char *dup, va_list ap)
 {
 	int	i;
@@ -50,6 +52,33 @@ int	parse_fmt(char *dup, va_list ap)
 			if (dup[i] != '\0' && data.spec > 0 && ft_istype(dup[i]))
 				count += print_arg(dup[i], ap, data);
 			else if (dup[i] != '\0')
+				count += ft_printchar(dup[i]);
+		}
+		else
+			count += ft_printchar(dup[i]);
+	}
+	return (count);
+}
+
+#else
+
+int	parse_fmt(char *dup, va_list ap)
+{
+	int	i;
+	int	count;
+	t_data	data;
+
+	i = -1;
+	count = 0;
+	while(dup[++i])
+	{
+		data = data_init();
+		if (dup[i] == '%' && dup[i + 1] != '\0')
+		{
+			i = parse_flags(dup, i, ap, &data);
+			if (dup[i] != '\0' && data.spec > 0 && ft_istype(dup[i]))
+				count += print_arg(dup[i], ap, data);
+			else if (dup[i] != '\0')
 				count += print_char(dup[i], data);
 		}
 		else
@@ -57,6 +86,8 @@ int	parse_fmt(char *dup, va_list ap)
 	}
 	return (count);
 }
+
+#endif
 
 t_data data_init(void)
 {

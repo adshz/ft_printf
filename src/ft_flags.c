@@ -31,13 +31,13 @@ int	flag_precision(const char *str, int pos, va_list ap, t_data *data)
 	data->precision = 0;
 	while (ft_isdigit(str[i]))
 	{
-		data->precision = (data->precision * 10) (str[i] - '0');
+		data->precision = (data->precision * 10) + (str[i] - '0');
 		i++;
 	}
 	return (i);
 }
 
-t_data	flag_width(va_list ap, t_data data);
+t_data	flag_width(va_list ap, t_data data)
 {
 	data.star = 1;
 	data.width = va_arg(ap, int);

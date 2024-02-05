@@ -35,7 +35,7 @@ int	ft_print_unint(char *nbstr, t_data data)
 	int	count;
 
 	count = 0;
-	if (data.left == 0)
+	if (data.left == 1)
 		count += ft_print_u(nbstr, data);
 	if (data.precision >= 0 && (size_t)data.precision < ft_strlen(nbstr))
 		data.precision = ft_strlen(nbstr);

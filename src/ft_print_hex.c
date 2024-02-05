@@ -47,7 +47,7 @@ int	ft_print_hexadec(char *nbstr, int n, int is_upper, t_data data)
 		count += ft_pad_width(data.width, 0, 0);
 	}
 	else
-		count += ft_pad_width(dta.width, \
+		count += ft_pad_width(data.width, \
 				ft_strlen(nbstr) + (data.hash * 2), data.zero);
 	if (data.left == 0)
 		count += ft_print_x(nbstr, n, is_upper, data);

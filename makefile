@@ -10,7 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
 
 # Define Color 
 DEFAULT = \033[0;39m
@@ -22,87 +21,49 @@ YELLOW = \033[0;93m
 CYAN =\033[0;96m
 WHITE = \033[0;97m
 BOLD = \033[91m
+NAME			=	libftprintf.a
 
-CC		=	cc
-CFLAGS		=	-Wextra -Werror -Werror -g3
-AR		=	ar
-ARFLAGS		=	rcs
-RM		=	rm -rf
+CC				=	gcc
+CFLAGS			=	-Wall -Wextra -Werror
+AR				=	ar
+ARFLAGS 		=	rcs
+RM				=	rm -rf
+INCLUDE			=	include
+SRC_DIR			=	src
+SRC				=	ft_printf ft_print_char ft_print_str ft_print_hex ft_print_int ft_print_ptr ft_print_unsigned ft_nbr_len ft_flags ft_printf_utils ft_printf_itoa ft_printf_utoa ft_printf_xtoa
+SRCS 			=	$(addsuffix .c, $(SRC))
 
-SRC_DIR		=	src
-SRC		=	ft_printf\
-			ft_printf_itoa\
-			ft_printf_utoa\
-			ft_printf_utils\
-			ft_printf_xtoa\
-			ft_flags\
-			ft_nbr_len\
-			ft_print_char\
-			ft_print_hex\
-			ft_print_int\
-			ft_print_ptr\
-			ft_print_str\
-			ft_print_unsigned\
-SRCS		=	 $(addsuffix .c, $(SRC))
+OBJ_DIR			=	obj
+OBJS			=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
+LIBFT_PATH		=	./libft
+LIBFT			=	$(LIBFT_PATH)/libft.a
 
+$(OBJ_DIR)/%.o:		$(SRC_DIR)/%.c
+					$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
 
-MAKEFLAGS	+=	--no-print-directory
-OBJ_DIR		=	obj
-OBJB_DIR	=	objb
+all:				$(NAME)
 
-OBJS		=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
+bonus:				all
 
-LIBFT_PATH	=	./libft
-LIBFT		=	$(LIBFT_PATH)/libft.a
-
-INCLUDE		=	include
-
-
-all: $(NAME)
-
-$(NAME): $(LIBFT) $(OBJ_DIR) $(OBJS) 
-	@cp $(LIBFT) $(NAME)
-	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-	@echo "$(YELLOW)[ft_print]:$(GREEN)Build Complete!$(DEFAULT)\n"	
-
-bonus: all
-
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
-	@$(CC) $(CFLAGS) -I $(INCLUDE) -c -o $@ $<
-
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+$(NAME):			$(LIBFT) $(OBJ_DIR) $(OBJS)
+				cp	$(LIBFT) $(NAME)
+					$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
 $(LIBFT):
-	@$(MAKE) $(MAKEFLAGS) -C $(LIBFT_PATH) all
+					make -C $(LIBFT_PATH) all
+
+$(OBJ_DIR):
+					mkdir -p $(OBJ_DIR)
 
 clean:
-	@$(MAKE) $(MAKEFLAGS) -C $(LIBFT_PATH) clean
-	@$(RM) $(OBJ_DIR)
-	@$(RM) test/test
-	@echo "$(CYAN)Objects removed$(DEFAULT)\n"
+					make -C $(LIBFT_PATH) clean
+					$(RM) $(OBJ_DIR)
 
-fclean: clean
-	@$(MAKE) $(MAKEFLAGS) -C $(LIBFT_PATH) fclean
-	@$(RM) $(NAME)
-	@echo   "$(CYAN)Removed $(LIBFT)$(DEFAULT)"
-	@echo   "$(CYAN)Removed $(NAME)$(DEFAULT)\n"
+fclean:				clean
+					make -C $(LIBFT_PATH) fclean
+					$(RM) $(NAME)
 
-re: fclean all
+re:					fclean all
 
-test: all
-	@echo "\n$(YELLOW)Testing.......$(DEFAULT)\n"
-	@$(CC) $(CFLAGS) -I $(INCLUDE) test/main.c -L. -lftprintf -o test/test
-	@test/test | cat -e
-	@echo "$(GREEN) Test Complete!$(DEFAULT)\n"
-
-test_bonus: bonus
-	@echo "\n$(YELLOW)Testing.......$(DEFAULT)\n"
-	@$(CC) $(CFLAGS) -I $(INCLUDE) test/main_bonus.c -L. -lftprintf -o test/test_bonus -g3
-	@test/test_bonus | cat -e
-	@echo "$(GREEN) Test  BONUS  Complete!$(DEFAULT)\n"
-
-
-.PHONY: all clean fclean re bonus test test_bonus
+.PHONY:				all bonus clean fclean re libft

@@ -19,6 +19,12 @@
 # include <stdint.h>
 # include "libft.h"
 
+# if defined(__linux__)
+# define PTRNULL "(nil)"
+# elif defined(__APPLE__)
+# define PTRNULL "0x0"
+# endif
+
 typedef enum t_e_error
 {
 	FORMAT_STRING_EMPTY = 0,

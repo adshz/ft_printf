@@ -30,7 +30,7 @@ int	print_int(int n, t_data data)
 		count += ft_pad_width(data.width, 0, 0);
 		return (count);
 	}
-	nbstr = ft_print_itoa(nb);
+	nbstr = ft_printf_itoa(nb);
 	if (!nbstr)
 		return (0);
 	count += ft_print_integer(nbstr, n, data);
@@ -97,27 +97,11 @@ int	ft_print_i(char *nbstr, int n, t_data data)
 	}
 	else if (data.plus == 1 && data.zero == 0)
 		count += ft_printchar('+');
-	else if (data.space == 1 && data.zeo == 0)
+	else if (data.space == 1 && data.zero == 0)
 		count += ft_printchar(' ');
 	if (data.precision >= 0)
 		count += ft_pad_width(data.precision - 1,\
 			       	ft_strlen(nbstr) - 1, 1);
 	count += ft_print_s(nbstr);
 	return (count);
-}
-
-int	ft_print_s(const char *str)
-{
-	int	len;
-
-	if (str == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	len = 0;
-	while (str[len])
-		len++;
-	write(1, str, len);
-	return (len);
 }

@@ -11,7 +11,22 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	print_string(const char *str, t_data data);
+static int	print_string(const char *str, t_data data)
+{
+	int	count;
+
+	count = 0;
+	if (data.precision >= 0)
+	{
+		count += ft_pad_width(data.precision, ft_strlen(str), 0);
+		count += print_precision(str, data.precision);
+	}
+	else
+		count += print_precision(str, ft_strlen(str));
+	return (count);
+}
+
+#if defined(__linux__) || defined(__gnu_linux__)
 
 int	print_str(const char *str, t_data data)
 {
@@ -38,20 +53,30 @@ int	print_str(const char *str, t_data data)
 	return (count);
 }
 
-static int	print_string(const char *str, t_data data)
+#else
+
+int	print_str(const char *str, t_data data)
 {
 	int	count;
 
 	count = 0;
+	if (str == NULL)
+		str = "(null)";
+	if (data.precision >= 0 && (size_t)data.precision > ft_strlen(str))
+		data.precision = ft_strlen(str);
+	if (data.left == 1)
+		count += print_string(str, data);
 	if (data.precision >= 0)
-	{
-		count += ft_pad_width(data.precision, ft_strlen(str), 0);
-		count += print_precision(str, data.precision);
-	}
+		count += ft_pad_width(data.width, data.precision, 0);
 	else
-		count += print_precision(str, ft_strlen(str));
+		count += ft_pad_width(data.width, ft_strlen(str), 0);
+	if (data.left == 0)
+		count += print_string(str, data);
 	return (count);
 }
+
+#endif
+
 
 int	print_precision(const char *str, int precision)
 {
@@ -61,4 +86,20 @@ int	print_precision(const char *str, int precision)
 	if (str[count] && count < precision)
 		write(1, &str[count++], 1);
 	return (count);
+}
+
+int	ft_print_s(const char *str)
+{
+	int	len;
+
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	len = 0;
+	while (str[len])
+		len++;
+	write(1, str, len);
+	return (len);
 }

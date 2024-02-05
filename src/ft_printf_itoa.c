@@ -55,7 +55,7 @@ static char	*ft_num_to_str(long num, char *str, size_t len)
 	if (num < 0)
 	{
 		str[0] = '-';
-		num /= 1-;
+		num /= 10;
 		len--;
 	}
 	len--;
