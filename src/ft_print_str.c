@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	print_string(const char *str, t_data data)
+static int print_string(const char *str, t_data data)
 {
-	int	count;
+	int count;
 
 	count = 0;
 	if (data.precision >= 0)
@@ -28,9 +28,9 @@ static int	print_string(const char *str, t_data data)
 
 #if defined(__linux__) || defined(__gnu_linux__)
 
-int	print_str(const char *str, t_data data)
+int print_str(const char *str, t_data data)
 {
-	int	count;
+	int count;
 
 	count = 0;
 	if (str == NULL && data.precision >= 0 && data.precision < 6)
@@ -55,9 +55,9 @@ int	print_str(const char *str, t_data data)
 
 #else
 
-int	print_str(const char *str, t_data data)
+int print_str(const char *str, t_data data)
 {
-	int	count;
+	int count;
 
 	count = 0;
 	if (str == NULL)
@@ -77,20 +77,22 @@ int	print_str(const char *str, t_data data)
 
 #endif
 
-
-int	print_precision(const char *str, int precision)
+int print_precision(const char *str, int precision)
 {
-	int	count;
+	int count;
 
 	count = 0;
-	if (str[count] && count < precision)
-		write(1, &str[count++], 1);
+	while (str[count] && count < precision)
+	{
+		write(1, &str[count], 1);
+		count++;
+	}
 	return (count);
 }
 
-int	ft_print_s(const char *str)
+int ft_print_s(const char *str)
 {
-	int	len;
+	int len;
 
 	if (str == NULL)
 	{
