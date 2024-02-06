@@ -30,7 +30,7 @@ ARFLAGS 		=	rcs
 RM				=	rm -rf
 INCLUDE			=	include
 SRC_DIR			=	src
-SRC				=	ft_printf ft_print_char ft_print_str ft_print_hex ft_print_int ft_print_ptr ft_print_unsigned ft_nbr_len ft_flags ft_printf_utils ft_printf_itoa ft_printf_utoa ft_printf_xtoa
+SRC				=	base_utils buf_mgr ft_printf parser render_char render_fmt render_int render_str set_pad_space set_pad_zero
 SRCS 			=	$(addsuffix .c, $(SRC))
 
 OBJ_DIR			=	obj
