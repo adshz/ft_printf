@@ -40,29 +40,32 @@ LIBFT_PATH		=	./libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
 
 $(OBJ_DIR)/%.o:		$(SRC_DIR)/%.c
-					$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
+				@	$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
 
 all:				$(NAME)
 
 bonus:				all
 
 $(NAME):			$(LIBFT) $(OBJ_DIR) $(OBJS)
-				cp	$(LIBFT) $(NAME)
-					$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+				@cp	$(LIBFT) $(NAME)
+				@	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+				@echo "$(YELLOW)[ft_print]:$(GREEN) Build Completed!$(DEFAULT)"
 
 $(LIBFT):
-					make -C $(LIBFT_PATH) all
+					@make -C $(LIBFT_PATH) all
 
 $(OBJ_DIR):
-					mkdir -p $(OBJ_DIR)
+					@mkdir -p $(OBJ_DIR)
 
 clean:
-					make -C $(LIBFT_PATH) clean
-					$(RM) $(OBJ_DIR)
+					@make -C $(LIBFT_PATH) clean
+					@$(RM) $(OBJ_DIR)
+					@echo "$(YELLOW)[ft_printf] $(GREEN)Objects Removed$(DEFAULT)"
 
 fclean:				clean
-					make -C $(LIBFT_PATH) fclean
-					$(RM) $(NAME)
+					@make -C $(LIBFT_PATH) fclean
+					@$(RM) $(NAME)
+					@echo "$(YELLOW)[ft_printf] $(GREEN)$(NAME) Removed$(DEFAULT)"
 
 re:					fclean all
 

@@ -84,7 +84,7 @@ INCLUDE		= ../include
 
 $(NAME):	$(OBJS)
 			@$(AR) $(NAME) $(OBJS)
-			@echo "$(YELLOW)[libft]:$(GREEN)Build Complete!$(DEFAULT)"
+			@echo "$(YELLOW)[libft] $(GREEN)Build Complete!$(DEFAULT)"
 
 bonus:		$(OBJS_BONUS)
 		@$(AR) $(NAME) $(OBJS_BONUS)

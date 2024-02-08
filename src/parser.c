@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "ft_printf_bonus.h"
 
+static int	printf_atoi(t_data *data);
 static void	get_value(t_data *data, int *value);
 static void	parse_flags(t_data *data);
 int			parse_fmt(t_data *data);
@@ -41,17 +42,35 @@ static void	parse_flags(t_data *data)
 
 static void	get_value(t_data *data, int *value)
 {
+	int	nbrlen;
+	char	*nbstr;
+
+	nbstr = (char *)data->s;
+	nbrlen = 0;
 	if (*data->s == '*')
 	{
 		*value = va_arg(data->ap, int);
 		++data->s;
 		return ;
 	}
-	*value = ft_atoi(data->s);
-	if (*value != 0)
-		data->s++;
+	while (in(NUMBERS, *nbstr))
+	{
+		nbstr++;
+		nbrlen++;
+	}
+	if (nbrlen < 2)
+	{
+		*value = ft_atoi(data->s);
+		if (*value != 0)
+			data->s++;
+		return ;
+	}
+	else
+	{
+		*value = printf_atoi(data);
+		return ; 
+	}
 }
-
 int	parse_fmt(t_data *data)
 {
 	ft_memset(&data->format, 0, sizeof(t_format));
@@ -77,4 +96,17 @@ int	parse_fmt(t_data *data)
 			data->format.base = BASE_2;
 	}
 	return (SUCCESS);
+}
+
+static int	printf_atoi(t_data *data)
+{
+	int	value;
+
+	value = 0;
+	while(in(NUMBERS, *data->s))
+	{
+		value = (value * 10) + (*data->s - '0');
+		data->s++;
+	}
+	return (value);
 }
