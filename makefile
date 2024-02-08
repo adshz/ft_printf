@@ -30,7 +30,7 @@ ARFLAGS 		=	rcs
 RM				=	rm -rf
 INCLUDE			=	include
 SRC_DIR			=	src
-SRC				=	ft_printf ft_print_char ft_print_str ft_print_hex ft_print_int ft_print_ptr ft_print_unsigned ft_nbr_len ft_flags ft_printf_utils ft_printf_itoa ft_printf_utoa ft_printf_xtoa
+SRC				=	base_utils buf_mgr ft_printf parser render_char render_fmt render_int render_str set_pad_space set_pad_zero
 SRCS 			=	$(addsuffix .c, $(SRC))
 
 OBJ_DIR			=	obj
@@ -40,29 +40,32 @@ LIBFT_PATH		=	./libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
 
 $(OBJ_DIR)/%.o:		$(SRC_DIR)/%.c
-					$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
+				@	$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
 
 all:				$(NAME)
 
 bonus:				all
 
 $(NAME):			$(LIBFT) $(OBJ_DIR) $(OBJS)
-				cp	$(LIBFT) $(NAME)
-					$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+				@cp	$(LIBFT) $(NAME)
+				@	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+				@echo "$(YELLOW)[ft_print]:$(GREEN) Build Completed!$(DEFAULT)"
 
 $(LIBFT):
-					make -C $(LIBFT_PATH) all
+					@make -C $(LIBFT_PATH) all
 
 $(OBJ_DIR):
-					mkdir -p $(OBJ_DIR)
+					@mkdir -p $(OBJ_DIR)
 
 clean:
-					make -C $(LIBFT_PATH) clean
-					$(RM) $(OBJ_DIR)
+					@make -C $(LIBFT_PATH) clean
+					@$(RM) $(OBJ_DIR)
+					@echo "$(YELLOW)[ft_printf] $(GREEN)Objects Removed$(DEFAULT)"
 
 fclean:				clean
-					make -C $(LIBFT_PATH) fclean
-					$(RM) $(NAME)
+					@make -C $(LIBFT_PATH) fclean
+					@$(RM) $(NAME)
+					@echo "$(YELLOW)[ft_printf] $(GREEN)$(NAME) Removed$(DEFAULT)"
 
 re:					fclean all
 

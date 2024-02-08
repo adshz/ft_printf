@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include "libft.h"
 
+# define NUMBERS "0123456789"
 # define FLAGS "+ 0-#"
 # define BUFFER_SIZE 4096
 # define TRUE 1
