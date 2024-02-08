@@ -9,8 +9,7 @@
 /*   Updated: 2024/01/23 15:08:37 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static void	put_sign(t_data *data);
 static void	put_0x(t_data *data);

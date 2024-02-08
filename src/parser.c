@@ -9,7 +9,7 @@
 /*   Updated: 2024/01/31 17:05:48 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static int	printf_atoi(t_data *data);
 static void	get_value(t_data *data, int *value);
@@ -71,6 +71,7 @@ static void	get_value(t_data *data, int *value)
 		return ; 
 	}
 }
+
 int	parse_fmt(t_data *data)
 {
 	ft_memset(&data->format, 0, sizeof(t_format));

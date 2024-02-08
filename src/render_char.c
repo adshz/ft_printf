@@ -9,8 +9,7 @@
 /*   Updated: 2024/01/24 16:04:05 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 void	print_char(t_data *data, int c)
 {

@@ -1,92 +1,104 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 15:04:07 by szhong            #+#    #+#             */
-/*   Updated: 2024/02/05 19:53:57 by szhong           ###   ########.fr       */
+/*   Created: 2024/01/22 13:51:53 by szhong            #+#    #+#             */
+/*   Updated: 2024/01/24 16:02:04 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-# include <stdarg.h>
-# include <unistd.h>
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 # include <stdlib.h>
-# include <stdint.h>
+# include <unistd.h>
+# include <stdarg.h>
 # include "libft.h"
 
-# if defined(__linux__)
-# define PTRNULL "(nil)"
-# elif defined(__APPLE__)
-# define PTRNULL "0x0"
-# endif
+# define NUMBERS "0123456789"
+# define FLAGS "+ 0-#"
+# define BUFFER_SIZE 4096
+# define TRUE 1
+# define FALSE 0
+# define SPECIFIERS "cspudixX%"
+# define UP_HEX "0123456789ABCDEF" 
+# define LO_HEX "0123456789abcdef"
+
+typedef union t_union_int
+{
+	unsigned long	uint64;
+	long int		int64;
+}	t_union_int;
 
 typedef enum t_e_error
 {
+	SUCCESS = 1,
+	MALLOC_FAIL = -1989,
+	PARSE_ERROR = -2010,
 	FORMAT_STRING_EMPTY = 0,
-}	t_e_rror;
+	INITIALIZATION_ERROR = -1
+}	t_e_error;
+
+typedef enum t_e_base
+{
+	BASE_2 = 2,
+	BASE_8 = 8,
+	BASE_10 = 10,
+	BASE_16 = 16,
+}	t_e_base;
+
+typedef struct s_format
+{
+	char			specifier;
+	char			buf_tmp[64];
+	int				left_justified;
+	int				zero_pads;
+	int				plus;
+	int				space;
+	int				hash;
+	int				width_value;
+	int				precision_value;
+	int				nbrlen;
+	int				upper;
+	int				padding_spaces;
+	int				padding_zeros;
+	int				signed_value;
+	int				is_negative;
+	int				is_converted;
+	t_e_base		base;
+}	t_format;
 
 typedef struct s_data
 {
-	int	spec;
-	int	width;
-	int	left;
-	int	zero;
-	int	star;
-	int	precision;
-	int	hash;
-	int	space;
-	int	plus;
-}		t_data;
+	t_format	format;
+	int			buffer_indx;
+	int			written_count;
+	const char	*s;
+	va_list		ap;
+	char		*buff;
+}	t_data;
 
-t_data	data_init(void);
-t_data	flag_left(t_data data);
-t_data	flag_width(va_list ap, t_data data);
-t_data	flag_digit(char c, t_data data);
-int	flag_precision(const char *str, int pos, \
-		va_list args, t_data *data);
-
-/*------------PRINTF----------------------*/
-int	ft_printf(const char *fmt, ...);
-int	parse_fmt(char *dup, va_list ap);
-int	parse_flags(const char *str, int i, va_list ap, t_data *data);
-int	print_arg(char specifier, va_list ap, t_data data);
-int	ft_printchar(char c);
-int	print_char(char c, t_data data);
-int	print_hex(unsigned int n, int is_upper, t_data data);
-int	ft_print_hexadec(char *nbstr, int n, int is_upper, t_data data);
-int	ft_print_x(char *nbstr, int n, int is_upper, t_data);
-int	ft_print_x_prefix(int is_upper);
-int	print_int(int n, t_data data);
-int	ft_print_integer(char *nbstr, int n, t_data data);
-int	ft_print_sign_precision(int n, t_data *data);
-int	ft_print_i(char *nbstr, int n, t_data data);
-int	ft_print_s(const char *str);
-int	print_str(const char *str, t_data data);
-int	print_precision(const char *str, int precision);
-int	print_ptr(unsigned long int n, t_data data);
-int	ft_print_p(unsigned long int n);
-void	ft_print_adr(unsigned long int n);
-int	ft_ptr_len(unsigned long int n);
-int	ft_unint_len(unsigned int n);
-int	ft_hex_len(unsigned int n);
-int	print_unsigned(unsigned n, t_data data);
-int	ft_print_unint(char *nbstr, t_data data);
-int	ft_print_u(char *nbstr, t_data data);
-
-/*------------HEPLER----------------------*/
-char	*ft_printf_itoa(long nb);
-char	*ft_printf_utoa(unsigned int nb);
-char	*ft_printf_xtoa(unsigned long int nb, int is_upper);
-int		ft_unint_len(unsigned int n);
-int		ft_hex_len(unsigned int n);
-int		ft_ptr_len(unsigned long int n);
-int		ft_istype(int c);
-int		ft_isspec(int c);
-int		ft_isflag(int c);
-int		ft_pad_width(int total_width, int size, int zero);
+void		flush_buff(t_data *data);
+void		write_buff(t_data *data, char c);
+void		putchar_buff(char c, int precision, t_data *data);
+void		putstr_buff(char *s, int precision, t_data *data);
+void		itoa_buff(t_data *data, t_union_int int_box);
+void		print_char(t_data *data, int c);
+void		render_fmt(t_data *data);
+void		print_int(t_data *data, t_union_int int_box);
+void		print_str(t_data *data, char *s);
+void		set_padding_zeros(t_data *data);
+void		set_padding_spaces(t_data *data);
+void		cal_precision_padding(t_data *data);
+void		cal_width_padding(t_data *data);
+void		adj_zero_special(t_data *data);
+void		cal_padding_space(t_data *data);
+void		adj_space_special(t_data *data);
+void		handle_int_spec(t_data *data, char spec, t_union_int *ptr_intbox);
+void		convert_digit(t_data *data, t_union_int int_box);
+int			data_init(t_data *data, const char *fmt);
+int			ft_printf(const char *fmt, ...);
+int			parse_fmt(t_data *data);
+int			in(const char *s, char c);
 #endif

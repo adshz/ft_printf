@@ -9,8 +9,7 @@
 /*   Updated: 2024/01/23 15:44:14 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static void	set_str_padding_spaces(t_data *data, char *s);
 static void	calculate_padding_spaces(t_data *data, int len);

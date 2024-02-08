@@ -9,7 +9,7 @@
 /*   Updated: 2024/01/24 15:50:05 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 void	render_fmt(t_data *data)
 {

@@ -9,8 +9,7 @@
 /*   Updated: 2024/01/24 15:55:10 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 void	flush_buff(t_data *data)
 {

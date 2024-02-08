@@ -49,7 +49,7 @@ bonus:				all
 $(NAME):			$(LIBFT) $(OBJ_DIR) $(OBJS)
 				@cp	$(LIBFT) $(NAME)
 				@	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-				@echo "$(YELLOW)[ft_print]:$(GREEN) Build Completed!$(DEFAULT)"
+				@echo "$(YELLOW)[ft_print] $(GREEN)Build Completed!$(DEFAULT)"
 
 $(LIBFT):
 					@make -C $(LIBFT_PATH) all
