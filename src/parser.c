@@ -18,20 +18,22 @@ int			parse_fmt(t_data *data);
 static void	parse_flags(t_data *data)
 {
 	char	flag;
+	t_format	*fmt;
 
+	fmt = &data->format;
 	while (in(FLAGS, *data->s))
 	{
 		flag = *data->s;
-		if (flag == '0')
-			data->format.zero_pads = TRUE;
-		else if (flag == '-')
-			data->format.left_justified = TRUE;
-		else if (flag == ' ')
-			data->format.space = TRUE;
+		if (flag == '-')
+			fmt->left_justified = TRUE;
 		else if (flag == '#')
-			data->format.hash = TRUE;
+			fmt->hash = TRUE;
+		else if (flag == ' ')
+			fmt->space = TRUE;
 		else if (flag == '+')
-			data->format.plus = TRUE;
+			fmt->plus = TRUE;
+		else if (flag == '0' && fmt->left_justified == 0 )
+			data->format.zero_pads = TRUE;
 		data->s++;
 	}
 	return ;
@@ -46,6 +48,8 @@ static void	get_value(t_data *data, int *value)
 		return ;
 	}
 	*value = ft_atoi(data->s);
+	if (*value != 0)
+		data->s++;
 }
 
 int	parse_fmt(t_data *data)
