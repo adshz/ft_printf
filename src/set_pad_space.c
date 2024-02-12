@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+/**
+ * @brief Adjusts padding spaces for numeric output.
+ * 
+ * Reduces padding spaces for negative numbers, 
+ * positive numbers with a plus sign, or when space is specified.
+ * 
+ * @param data Formatting context.
+ */
 void	set_padding_spaces(t_data *data)
 {
 	cal_padding_space(data);
@@ -32,6 +40,11 @@ void	set_padding_spaces(t_data *data)
 	}
 }
 
+/**
+ * @brief Calculates the space padding based on width, zeros, content length.
+ * 
+ * @param data Formatting context.
+ */
 void	cal_padding_space(t_data *data)
 {
 	int	width;
@@ -45,6 +58,13 @@ void	cal_padding_space(t_data *data)
 	return ;
 }
 
+/**
+ * @brief Adjusts padding for special cases in hexadecimal and pointer outputs.
+ * 
+ * Reduces padding spaces for hex and pointer specifiers when applicable.
+ * 
+ * @param data Formatting context.
+ */
 void	adj_space_special(t_data *data)
 {
 	char	spec;

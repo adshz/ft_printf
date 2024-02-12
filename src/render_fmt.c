@@ -11,6 +11,17 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+/**
+ * @brief Renders formatted output based on the parsed format specifier.
+ * 
+ * Handles the output of different types of format specifiers, 
+ * including characters, strings, and various integer types. 
+ * For integer specifiers, it processes and prints the integer
+ * according to the specified format options.
+ * 
+ * @param data Pointer to the data structure containing all necessary information
+ * for rendering, including the format specifier and the argument list.
+ */
 void	render_fmt(t_data *data)
 {
 	t_union_int	int_box;
@@ -34,6 +45,17 @@ void	render_fmt(t_data *data)
 	}
 }
 
+/**
+ * @brief Processes integer specifiers and retrieves the corresponding value.
+ * 
+ * Depending on the specifier, retrieves either a signed or unsigned integer 
+ * from the variadic arguments and stores it in the provided union. 
+ * Adjusts format flags for signed values and negative numbers as necessary.
+ * 
+ * @param data Pointer to the data structure containing all relevant data.
+ * @param spec The current integer format specifier being processed.
+ * @param ptr_intbox Pointer to a union to store the retrieved integer value.
+ */
 void	handle_int_spec(t_data *data, char spec, t_union_int *ptr_intbox)
 {
 	if (in("di", spec))

@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+/**
+ * @brief Calculates and adjusts zero padding based on formatting options.
+ * 
+ * Applies precision and width calculations for zero padding, 
+ * adjusting for special cases and ensuring non-negative padding.
+ * 
+ * @param data Formatting context.
+ */
 void	set_padding_zeros(t_data *data)
 {
 	cal_precision_padding(data);
@@ -25,6 +33,14 @@ void	set_padding_zeros(t_data *data)
 		data->format.padding_zeros = 0;
 }
 
+/**
+ * @brief Calculates zero padding based on precision and content length.
+ * 
+ * Sets padding zeros to the difference between precision and content length
+ * if precision is specified and greater than length.
+ * 
+ * @param data Formatting context.
+ */
 void	cal_precision_padding(t_data *data)
 {
 	int	precision;
@@ -42,6 +58,14 @@ void	cal_precision_padding(t_data *data)
 	}
 }
 
+/**
+ * @brief Calculates zero padding based on width and content length.
+ * 
+ * Adjusts padding zeros to fill the width specified if greater 
+ * than the content length.
+ * 
+ * @param data Formatting context.
+ */
 void	cal_width_padding(t_data *data)
 {
 	int	width;
@@ -54,6 +78,14 @@ void	cal_width_padding(t_data *data)
 	return ;
 }
 
+/**
+ * @brief Adjusts zero padding for negative numbers, signs, and hex cases.
+ * 
+ * Reduces padding zeros for signed values, hex prefixes, and pointers, 
+ * ensuring proper formatting alignment.
+ * 
+ * @param data Formatting context.
+ */
 void	adj_zero_special(t_data *data)
 {
 	int	is_neg;

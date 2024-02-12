@@ -11,6 +11,16 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+/**
+ * @brief Checks if a character is present in a string.
+ * 
+ * Iterates through a string to find if the specified character exists within it.
+ * 
+ * @param s String to search.
+ * @param c Character to find.
+ * 
+ * @return TRUE if character is found, FALSE otherwise.
+ */
 int	in(const char *s, char c)
 {
 	if (!s)

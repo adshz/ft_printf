@@ -14,6 +14,14 @@
 static void	set_str_padding_spaces(t_data *data, char *s);
 static void	calculate_padding_spaces(t_data *data, int len);
 
+/**
+ * @brief Prints a string with formatting options.
+ * 
+ * Handles null strings, precision, width, and left justification.
+ * 
+ * @param data Formatting context.
+ * @param s String to print.
+ */
 void	print_str(t_data *data, char *s)
 {
 	if (s == NULL)
@@ -37,6 +45,15 @@ void	print_str(t_data *data, char *s)
 	}
 }
 
+/**
+ * @brief Calculates the number of spaces needed for padding.
+ * 
+ * Determines padding based on width and precision values 
+ * relative to content length.
+ * 
+ * @param data Formatting context.
+ * @param len Length of the content to be padded.
+ */
 static void	calculate_padding_spaces(t_data *data, int len)
 {
 	int	temp;
@@ -55,6 +72,15 @@ static void	calculate_padding_spaces(t_data *data, int len)
 		data->format.padding_spaces = data->format.width_value - len;
 }
 
+/**
+ * @brief Sets padding spaces for string output.
+ * 
+ * Calculates and assigns the appropriate number of spaces for padding 
+ * based on the string's length and format specifications.
+ * 
+ * @param data Formatting context.
+ * @param s String to output.
+ */
 static void	set_str_padding_spaces(t_data *data, char *s)
 {
 	int	len;

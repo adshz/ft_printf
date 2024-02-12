@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+/**
+ * @brief Prints a character with formatting.
+ * 
+ * Handles width and left justification for a single character output.
+ * 
+ * @param data Formatting context.
+ * @param c Character to print.
+ */
 void	print_char(t_data *data, int c)
 {
 	int	width;
