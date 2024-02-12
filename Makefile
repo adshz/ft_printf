@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: szhong <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/20 00:35:41 by szhong            #+#    #+#              #
-#    Updated: 2024/02/05 19:57:49 by szhong           ###   ########.fr        #
+#    Updated: 2024/02/12 14:50:48 by szhong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ NAME			=	libftprintf.a
 
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
+MAKEFLAG		=	--no-print-directory
 AR				=	ar
 ARFLAGS 		=	rcs
 RM				=	rm -rf
@@ -52,18 +53,18 @@ $(NAME):			$(LIBFT) $(OBJ_DIR) $(OBJS)
 				@echo "$(YELLOW)[ft_print] $(GREEN)Build Completed!$(DEFAULT)"
 
 $(LIBFT):
-					@make -C $(LIBFT_PATH) all
+					@make $(MAKEFLAG) -C $(LIBFT_PATH) all
 
 $(OBJ_DIR):
 					@mkdir -p $(OBJ_DIR)
 
 clean:
-					@make -C $(LIBFT_PATH) clean
+					@make $(MAKEFLAG) -C $(LIBFT_PATH) clean
 					@$(RM) $(OBJ_DIR)
 					@echo "$(YELLOW)[ft_printf] $(GREEN)Objects Removed$(DEFAULT)"
 
 fclean:				clean
-					@make -C $(LIBFT_PATH) fclean
+					@make $(MAKEFLAG) -C $(LIBFT_PATH) fclean
 					@$(RM) $(NAME)
 					@echo "$(YELLOW)[ft_printf] $(GREEN)$(NAME) Removed$(DEFAULT)"
 

@@ -6,7 +6,7 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:58:13 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/24 15:50:05 by szhong           ###   ########.fr       */
+/*   Updated: 2024/02/12 14:57:22 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -27,7 +27,10 @@ void	render_fmt(t_data *data)
 	if (in("dipxXub", spec))
 	{
 		handle_int_spec(data, spec, &int_box);
-		print_int(data, int_box);
+		if (int_box.uint64 == 0 && spec == 'p')
+			putstr_buff("(nil)", 6, data);
+		else
+			print_int(data, int_box);
 	}
 }
 
