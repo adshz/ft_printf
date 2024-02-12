@@ -6,19 +6,20 @@
 /*   By: szhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:26:01 by szhong            #+#    #+#             */
-/*   Updated: 2024/01/31 17:05:48 by szhong           ###   ########.fr       */
+/*   Updated: 2024/02/12 14:09:46 by szhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
 static int	printf_atoi(t_data *data);
+static int	get_nbrlen(char *nbstr);
 static void	get_value(t_data *data, int *value);
 static void	parse_flags(t_data *data);
 int			parse_fmt(t_data *data);
 
 static void	parse_flags(t_data *data)
 {
-	char	flag;
+	char		flag;
 	t_format	*fmt;
 
 	fmt = &data->format;
@@ -33,19 +34,30 @@ static void	parse_flags(t_data *data)
 			fmt->space = TRUE;
 		else if (flag == '+')
 			fmt->plus = TRUE;
-		else if (flag == '0' && fmt->left_justified == 0 )
+		else if (flag == '0' && fmt->left_justified == 0)
 			data->format.zero_pads = TRUE;
 		data->s++;
 	}
 	return ;
 }
 
-static void	get_value(t_data *data, int *value)
+static int	get_nbrlen(char *nbstr)
 {
 	int	nbrlen;
-	char	*nbstr;
 
-	nbstr = (char *)data->s;
+	nbrlen = 0;
+	while (in(NUMBERS, *nbstr))
+	{
+		nbstr++;
+		nbrlen++;
+	}
+	return (nbrlen);
+}
+
+static void	get_value(t_data *data, int *value)
+{
+	int		nbrlen;
+
 	nbrlen = 0;
 	if (*data->s == '*')
 	{
@@ -53,11 +65,7 @@ static void	get_value(t_data *data, int *value)
 		++data->s;
 		return ;
 	}
-	while (in(NUMBERS, *nbstr))
-	{
-		nbstr++;
-		nbrlen++;
-	}
+	nbrlen = get_nbrlen((char *)data->s);
 	if (nbrlen < 2)
 	{
 		*value = ft_atoi(data->s);
@@ -68,7 +76,7 @@ static void	get_value(t_data *data, int *value)
 	else
 	{
 		*value = printf_atoi(data);
-		return ; 
+		return ;
 	}
 }
 
@@ -104,7 +112,7 @@ static int	printf_atoi(t_data *data)
 	int	value;
 
 	value = 0;
-	while(in(NUMBERS, *data->s))
+	while (in(NUMBERS, *data->s))
 	{
 		value = (value * 10) + (*data->s - '0');
 		data->s++;
