@@ -62,7 +62,7 @@ ft_printf("Hex lower: %x\n", 255);       // Output: Hex lower: ff
 ft_printf("Hex upper: %X\n", 255);       // Output: Hex upper: FF
 ft_printf("Unsigned: %u\n", 4294967295); // Output: Unsigned: 4294967295
 ft_printf("Percent: %%\n");              // Output: Percent: %
-
+```
 
 ## Advanced Usage:  Format Specifiers
 
