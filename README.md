@@ -94,5 +94,54 @@ Hello, World!
 ``` 
 
 
+---
+Made by [szhong](szhong@student.42london.com)
 
+I am writing this README in the process of learning, so if you have any suggestions or find any issues, please let me know. You can reach me via:
+- LinkedIn: [@szhong](https://www.linkedin.com/in/shenghongzhong/) 
+- X: [@amzdsz](https://x.com/amzdsz) 
+
+
+I am writing newsletter, if you are interested, please subscribe: 
+
+<div style="
+   background-color: #2e2e2e; 
+   color: #e0e0e0; 
+   border: 1px solid #404040; 
+   border-radius: 8px; 
+   padding: 20px; 
+   text-align: center; 
+   margin-bottom: 20px;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+   
+   <h2 style="
+       color: #ffffff; 
+       margin-bottom: 16px; 
+       font-size: 24px;">
+       Amazing David
+   </h2>
+   
+   <p style="
+       color: #b0b0b0; 
+       margin-bottom: 24px; 
+       line-height: 1.6;
+       text-align: left;">
+       My personal mission is to live a rich flourish life and leave legacy to the world as an inspiration (hopefully)
+   </p>
+   
+   <a href="https://amazingdavid.substack.com/" 
+       style="
+       display: inline-block;
+       background-color: #4a4a4a;
+       color: #ffffff;
+       padding: 12px 24px;
+       text-decoration: none;
+       border-radius: 6px;
+       font-weight: 500;
+       transition: background-color 0.2s ease;
+       cursor: pointer;
+       border: 1px solid #555555;">
+       Subscribe to Newsletter
+   </a>
+</div>
 
